@@ -332,12 +332,21 @@
     .step-text { font-size: 0.9rem; color: var(--text-dim); line-height: 1.75; }
 
     /* ===== TESTIMONIALS ===== */
-    .testi-sec { background: var(--bg-1); }
-    .testi-grid {
-      columns: 3;
-      column-gap: 1.1rem;
-      margin-top: 3rem;
+    .testi-sec { background: var(--bg-1); overflow: hidden; }
+    .marquee-outer { overflow: hidden; padding: 0.3rem 0; }
+    .marquee-inner { display: flex; gap: 1rem; width: max-content; }
+    .marquee-inner img {
+      width: 180px; border-radius: 12px;
+      border: 1px solid var(--subtle); flex-shrink: 0; display: block;
+      transition: border-color 0.3s, transform 0.3s;
     }
+    .marquee-inner img:hover { border-color: var(--gold-border); transform: scale(1.03); }
+    @keyframes marqueeRight { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes marqueeLeft { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+    .row1 .marquee-inner { animation: marqueeRight 40s linear infinite; }
+    .row2 .marquee-inner { animation: marqueeLeft 40s linear infinite; }
+    .marquee-outer:hover .marquee-inner { animation-play-state: paused; }
+
     .tc-img {
       break-inside: avoid;
       margin-bottom: 1.1rem;
@@ -780,21 +789,33 @@
     <h2 class="sec-h2 rv">מה אומרים עלינו</h2>
     <p class="rv" style="text-align:center;color:var(--text-dim);font-size:0.95rem;margin-top:0.4rem;">750+ משפחות שעשו את זה נכון</p>
 
-    <div class="testi-grid">
-      <div class="tc-img rv"><img src="IMG_7700.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d1"><img src="IMG_7704.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d2"><img src="IMG_7705.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d3"><img src="IMG_7706.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d1"><img src="הוכחה.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d2"><img src="IMG_7708.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d3"><img src="IMG_7709.jpeg" alt="עדות לקוח"></div>
-<div class="tc-img rv d2"><img src="IMG_7714.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d3"><img src="IMG_7716.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d1"><img src="IMG_7717.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d2"><img src="IMG_7718.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d3"><img src="עדות1.jpeg" alt="עדות לקוח"></div>
-      <div class="tc-img rv d1"><img src="עדות2.jpeg" alt="עדות לקוח"></div>
+  </div>
+
+  <div class="marquee-outer row1" style="margin-top:2.5rem;">
+    <div class="marquee-inner">
+      <img src="IMG_7700.jpeg" alt="עדות לקוח"><img src="IMG_7704.jpeg" alt="עדות לקוח">
+      <img src="IMG_7705.jpeg" alt="עדות לקוח"><img src="IMG_7706.jpeg" alt="עדות לקוח">
+      <img src="הוכחה.jpeg" alt="עדות לקוח"><img src="IMG_7708.jpeg" alt="עדות לקוח">
+      <img src="IMG_7709.jpeg" alt="עדות לקוח">
+      <img src="IMG_7700.jpeg" alt="עדות לקוח"><img src="IMG_7704.jpeg" alt="עדות לקוח">
+      <img src="IMG_7705.jpeg" alt="עדות לקוח"><img src="IMG_7706.jpeg" alt="עדות לקוח">
+      <img src="הוכחה.jpeg" alt="עדות לקוח"><img src="IMG_7708.jpeg" alt="עדות לקוח">
+      <img src="IMG_7709.jpeg" alt="עדות לקוח">
     </div>
+  </div>
+
+  <div class="marquee-outer row2" style="margin-top:1rem;margin-bottom:3rem;">
+    <div class="marquee-inner">
+      <img src="IMG_7714.jpeg" alt="עדות לקוח"><img src="IMG_7716.jpeg" alt="עדות לקוח">
+      <img src="IMG_7717.jpeg" alt="עדות לקוח"><img src="IMG_7718.jpeg" alt="עדות לקוח">
+      <img src="עדות1.jpeg" alt="עדות לקוח"><img src="עדות2.jpeg" alt="עדות לקוח">
+      <img src="IMG_7714.jpeg" alt="עדות לקוח"><img src="IMG_7716.jpeg" alt="עדות לקוח">
+      <img src="IMG_7717.jpeg" alt="עדות לקוח"><img src="IMG_7718.jpeg" alt="עדות לקוח">
+      <img src="עדות1.jpeg" alt="עדות לקוח"><img src="עדות2.jpeg" alt="עדות לקוח">
+    </div>
+  </div>
+
+  <div class="container">
 
     <div class="rv" style="text-align:center;margin-top:2.5rem;">
       <p style="font-size:1.03rem;color:#ccc;margin-bottom:1.25rem;line-height:1.85;">750 משפחות כבר עשו את זה. עכשיו התור שלכם.</p>
