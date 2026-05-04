@@ -336,7 +336,7 @@
     .carousel-wrap { position: relative; max-width: 360px; margin: 2.5rem auto 0; }
     .carousel-track { overflow: hidden; border-radius: var(--r); }
     .carousel-slides { display: flex; transition: transform 0.45s ease; }
-    .carousel-slides img { min-width: 100%; border-radius: var(--r); border: 1px solid var(--subtle); display: block; }
+    .carousel-slides img { flex-shrink: 0; border-radius: var(--r); border: 1px solid var(--subtle); display: block; }
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(10,10,10,0.75); border: 1px solid var(--gold-border);
@@ -1057,11 +1057,21 @@
       dotsWrap.appendChild(d);
     }
 
+    function trackWidth() { return slides.parentElement.offsetWidth; }
+
+    function setWidths() {
+      const w = trackWidth();
+      Array.from(slides.children).forEach(img => { img.style.width = w + 'px'; });
+    }
+
     function goTo(n) {
       current = (n + total) % total;
-      slides.style.transform = 'translateX(' + (current * -100) + '%)';
+      slides.style.transform = 'translateX(-' + (current * trackWidth()) + 'px)';
       document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
     }
+
+    window.addEventListener('resize', () => { setWidths(); goTo(current); });
+    setWidths();
 
     window.carouselMove = function(dir) { goTo(current + dir); resetAuto(); };
 
